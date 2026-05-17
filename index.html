@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Raw Event + Tracking Coaching Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Raw Event + Tracking</p>
+          <h1>足球概念可量化验证 Dashboard</h1>
+          <p id="subtitle" class="subtitle">Loading raw match analysis...</p>
+        </div>
+        <div class="source-pill">No aggregate fields · No prior model outputs</div>
+      </header>
+
+      <section class="kpi-grid" id="kpiGrid"></section>
+
+      <section class="layout">
+        <div class="panel wide">
+          <div class="panel-head">
+            <div>
+              <h2>球队对比</h2>
+              <p>事件结果 + tracking 结构指标</p>
+            </div>
+          </div>
+          <div id="teamCompare" class="team-compare"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>概念验证</h2>
+              <p>只基于原始 event/tracking</p>
+            </div>
+          </div>
+          <div id="conceptChecks" class="concept-list"></div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="panel wide">
+          <div class="panel-head">
+            <div>
+              <h2>比赛时间线</h2>
+              <p>每分钟球队宽度与压迫代理</p>
+            </div>
+            <select id="timelineMetric" aria-label="timeline metric">
+              <option value="width">宽度</option>
+              <option value="depth">纵深</option>
+              <option value="height">阵块高度</option>
+              <option value="pressure">8m 压迫</option>
+            </select>
+          </div>
+          <svg id="timelineChart" class="line-chart" viewBox="0 0 900 260" role="img"></svg>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>高速跑意图代理</h2>
+              <p>速度阈值 + 球权/空间上下文规则</p>
+            </div>
+          </div>
+          <div id="intentBars" class="intent-bars"></div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="panel wide">
+          <div class="panel-head">
+            <div>
+              <h2>球员表</h2>
+              <p>角色、事件输出、跑动输出</p>
+            </div>
+            <input id="playerSearch" type="search" placeholder="搜索球员/球队/位置" />
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>球员</th>
+                  <th>队伍</th>
+                  <th>位置</th>
+                  <th>传球</th>
+                  <th>成功率</th>
+                  <th>推进传球</th>
+                  <th>射门</th>
+                  <th>夺回</th>
+                  <th>HSR m</th>
+                  <th>Sprint m</th>
+                  <th>HSR段</th>
+                </tr>
+              </thead>
+              <tbody id="playerTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>数据边界</h2>
+              <p>这版明确不做的判断</p>
+            </div>
+          </div>
+          <ul class="limits">
+            <li>不判断扫描/观察：没有头部姿态。</li>
+            <li>不判断身体朝向：普通 x/y tracking 不够。</li>
+            <li>不判断沟通：event/tracking 没有沟通信号。</li>
+            <li>不判断触球动作质量：只看接球后结果代理。</li>
+            <li>不把跑量直接解释成表现好坏。</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
